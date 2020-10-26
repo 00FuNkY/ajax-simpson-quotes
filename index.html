@@ -31,6 +31,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
   <script>
 
+    const url = "https://simpsons-quotes-api.herokuapp.com/quotes";
+    axios.get(url)
+      .then(function(response) {
+        return response.data; // response.data instead of response.json() with fetch
+      })
+      .then(function(simpson) {
+        console.log('data decoded from JSON:', simpson[0]);
+  
+        // Build a block of HTML
+        const simpsonHTML = `
+        <p><strong>${simpson[0].quote}</strong></p>
+        <p> ${simpson[0].character} </p>
+          <img src="${simpson[0].image}" />
+        `;
+        document.querySelector('#chuck-norris').innerHTML = simpsonHTML;
+      });
+  
+  
+  
   </script>
 </body>
 
